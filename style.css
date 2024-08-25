@@ -1,0 +1,58 @@
+body {
+    background-color:rgb(181, 214, 240)4;
+}
+
+header {
+    background-color: steelblue;
+    color: rgb(196, 196, 196);
+    margin: 12;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px;
+    border: 2px, solid, yellow;
+    text-align: center;
+}
+
+nav {
+    background-color: steelblue;
+    color:rgb(196, 196, 196);
+    padding: 1px;
+    border: 5px, solid, brown;
+    text-align:center
+}
+
+nav ul {
+  list-style: none; 
+  font-size: large;
+}
+
+nav li {
+    display: inline-block;
+}
+
+p {
+    font-weight: 400;
+    font-size: 17px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#intro {
+text-align: left;    
+}
+
+div {
+    text-align: right;
+}
+
+nav a {
+    text-decoration: none;
+
+}
+
+footer{
+    text-align: center;
+    font-size: 13pt;
+    font-weight: 550;
+    background-color: steelblue;
+    padding: 20pt;
+}
+
