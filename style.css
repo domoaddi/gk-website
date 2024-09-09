@@ -1,58 +1,117 @@
 body {
-    background-color:rgb(181, 214, 240)4;
+    background-color: rgb(181, 214, 240);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header {
     background-color: steelblue;
     color: rgb(196, 196, 196);
-    margin: 12;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 10px;
-    border: 2px, solid, yellow;
+    margin: 0px;
+    padding: 5px;
     text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    margin-right: 5%;
 }
 
 nav {
     background-color: steelblue;
-    color:rgb(196, 196, 196);
+    color: rgb(196, 196, 196);
     padding: 1px;
-    border: 5px, solid, brown;
-    text-align:center
+    text-align: center;
 }
 
 nav ul {
-  list-style: none; 
-  font-size: large;
+    list-style: none;
+    font-size: large;
 }
 
 nav li {
     display: inline-block;
 }
 
-p {
-    font-weight: 400;
-    font-size: 17px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-#intro {
-text-align: left;    
-}
-
-div {
-    text-align: right;
-}
-
 nav a {
     text-decoration: none;
-
 }
 
-footer{
-    text-align: center;
-    font-size: 13pt;
+footer {
+    text-align: right;
+    font-size: 6pt;
     font-weight: 550;
     background-color: steelblue;
     padding: 20pt;
+}
+
+/* Use CSS Grid for the layout with the images in the center */
+.content {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Three-column layout */
+    gap: 20px;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Left-side text */
+.text-left {
+    grid-column: 1 / 2;
+    text-align: justify;
+}
+
+/* Right-side text */
+.text-right {
+    grid-column: 3 / 4;
+    text-align: justify;
+}
+
+/* Center images */
+.center-img {
+    grid-column: 2 / 3;
+    max-width: 250%; /* Adjust the image size */
+    width: 475px; /* or any size you prefer */
+    height: auto;
+    margin: 0 auto;
+}
+
+.stars{
+    padding-left: 20px;
+    border: 50px, solid,steelblue;
+}
+
+.review{
+    text-align: left;
+    max-width: 50%;
+}
+
+.reviews{
+    text-align: left;
+    max-width: 50%;
+}
+
+/*Services list */
+#services{
+    text-align: right;
+    list-style-position: inside; /* Moves the dots inside and aligns them with the text */
+    padding-right: 15px; /* Optional: Adds some padding to the right */
+}
+
+/* Responsive layout for small screens */
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .text-left, .text-right {
+        grid-column: 1 / 2;
+    }
+
+    .center-img {
+        grid-column: 1 / 2;
+        margin-bottom: 20px;
+    }
 }
 
