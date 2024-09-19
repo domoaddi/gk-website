@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.portfolio-gallery-container {
+    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    margin: 50px auto;
+    overflow: hidden; /* Hide the overflowing images */
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-gallery {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.portfolio-gallery a {
+    flex-shrink: 0;
+    margin: 5px;
+}
+
+.portfolio-gallery img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.portfolio-gallery img:hover {
+    transform: scale(1.05);
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 1;
+}
+
+.arrow.left {
+    left: 0;
+}
+
+.arrow.right {
+    right: 0;
+}
