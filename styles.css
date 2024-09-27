@@ -1,61 +1,51 @@
+/* Main layout for the portfolio page */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: rgb(181, 214, 240);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
 }
 
-.portfolio-gallery-container {
-    position: relative;
-    width: 80%;
-    max-width: 1000px;
-    margin: 50px auto;
-    overflow: hidden; /* Hide the overflowing images */
-    border: 2px solid #ccc;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.portfolio-gallery {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden;
-    width: fit-content;
-}
-
-.portfolio-gallery a {
-    flex-shrink: 0;
-    margin: 5px;
-}
-
-.portfolio-gallery img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.portfolio-gallery img:hover {
-    transform: scale(1.05);
-}
-
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
+header {
+    background-color: steelblue;
     padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    z-index: 1;
+    text-align: center;
 }
 
-.arrow.left {
-    left: 0;
+h2{
+    color: rgb(196, 196, 196);
 }
 
-.arrow.right {
-    right: 0;
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    justify-items: center;
+    margin: 40px;
+}
+
+.portfolio-item img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Enlarge the image on hover */
+.portfolio-item img:hover {
+    transform: scale(1.2);
+}
+
+/* Footer styles */
+footer {
+    background-color: steelblue;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 6pt;
 }
