@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css"/>
     <title>G&K Construction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -19,46 +22,77 @@
         </ul>
     </nav>
     <hr>
-    <h3>G&K Construction has helped businesses all over the country!</h3>
 
-    <!-- Updated layout with images in the center and text on both sides -->
-    <div class="content">
-        <p class="text-left">G&K Construction started as... consectetuer adipiscing elit. Metus quam inceptos risus consequat hendrerit curae himenaeos. Velit vitae lectus lobortis eros maecenas platea. 
-            <br>Potenti fames nascetur viverra; dapibus sit diam ornare. 
-            Rutrum elit imperdiet felis feugiat lobortis aptent amet nostra mollis. 
-            Cursus est dictum velit dolor morbi viverra commodo morbi cras. 
-            Est maximus facilisis etiam; eget nam venenatis. Libero augue diam vestibulum pellentesque ante imperdiet sodales placerat?
-            Phasellus vel posuere lacus. Aenean lectus arcu, dignissim in tempus vel, consectetur vel turpis. In eget gravida turpis. Donec ac justo sagittis, commodo arcu eget, ornare velit. Pellentesque volutpat id sem nec eleifend. Nullam eget ante elit. Donec ex sem, mollis sit amet suscipit mollis, tincidunt vel ex. Maecenas ultrices efficitur nulla vel ullamcorper. Proin quis maximus ante. Quisque vulputate eu diam sit amet cursus. Mauris sit amet volutpat nisi. 
-            <br>Sed pellentesque est ac pharetra bibendum. Curabitur eu nisl dui. Cras libero quam, euismod quis mi ac, maximus tincidunt nibh.</p>
-        <img class="center-img" src="./images/stock1.jpg" alt="Black Man working"/>
-        <img class="center-img" src="./images/stock2.jpg" alt="GnK working on a house"/>
-        <p class="text-right">Metus quam inceptos risus consequat hendrerit curae himenaeos. Velit vitae lectus lobortis eros maecenas platea. 
-            <br>Potenti fames nascetur viverra; dapibus sit diam ornare. 
-            <br>Rutrum elit imperdiet felis feugiat lobortis aptent amet nostra mollis. 
-            <br>Cursus est dictum velit dolor morbi viverra commodo morbi cras. 
-            Est maximus facilisis etiam; eget nam venenatis. Libero augue diam vestibulum pellentesque ante imperdiet sodales placerat?
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id nisi in purus consectetur bibendum quis nec nunc. Nulla egestas felis at ex posuere, id finibus turpis malesuada. Nunc molestie auctor vestibulum. Sed quis ipsum congue, mattis lorem in, venenatis sem. Suspendisse convallis elit a dolor commodo, vel aliquet orci vulputate. Sed malesuada rhoncus fringilla. Vivamus leo velit, finibus vel mi vel, ornare pharetra diam.</p>
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <div class="text-left">
+            <h4>Vision</h4>
+            <p>Our vision is to supply the most trustworthy service nationwide meeting the needs of both residential and commercial customers.</p>
+            <h5>Mission</h5>
+            <p>Our mission is to provide above standard services through honesty, adaptation, and operational efficiency.</p>
+        </div>
+        <div class="about-section">
+            <h3>About</h3>
+            <p>Founded in 2016 by Gary and Kimberly Zappala. Located in Bowling Green, MO. Primarily servicing St. Louis, Warren, St. Charles, and Lincoln Counties; with projects completed nationwide!</p>
+        </div>
+        <div class="images-right">
+            <img class="right-img" src="./images/stock1.jpg" alt="Black Man working"/>
+            <img class="right-img" src="./images/stock2.jpg" alt="GnK working on a house"/>
+        </div>
     </div>
-<hr>
-<div class="stars">
-    <h3>Our Reviews:</h3>
-<img class="reviews" src="./images/review1.JPG" atl="G&K good review"/>
-<img class="reviews" src="./images/review2.JPG" atl="another good G&K review"/>
-</div>
-    <div id="services">
-    <h3>Our Services Include:</h3>
-    <ul>
-        <li>Pole Barns</li>
-        <li>Houses</li>
-        <li>Roofing</li>
-        <li>Remodeling</li>
-        <li>Disaster Renovation</li>
-        <li>Dry Walling</li>
-        <li>Concrete</li>
-        <li>Tuck Pointing</li>
-    </ul>    
-</div>
     <hr>
+
+    <div class="stars">
+        <h3>Our Reviews:</h3>
+        <img class="reviews" src="./images/review1.JPG" alt="G&K good review"/>
+        <img class="reviews" src="./images/review2.JPG" alt="another good G&K review"/>
+    </div>
+    <div class="review-form-container">
+        <h3>Share Your Experience</h3>
+        <form id="reviewForm" class="review-form">
+            <div class="form-group">
+                <label for="reviewText">Your Review:</label>
+                <textarea id="reviewText" name="reviewText" rows="4" required placeholder="Tell us about your experience with G&K Construction..."></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required placeholder="Your City">
+                </div>
+                
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <select id="state" name="state" required>
+                        <option value="">Select State</option>
+                        <option value="MO">Missouri</option>
+                        <option value="IL">Illinois</option>
+                        <!-- Add more states as needed -->
+                    </select>
+                </div>
+            </div>
+    
+            <button type="submit" class="submit-btn">Submit Review</button>
+        </form>
+    
+        <div id="reviewsDisplay" class="reviews-display">
+            <!-- Existing reviews will be displayed here -->
+        </div>
+    </div>
+
+    <div id="services">
+        <h3>Our Services Include:</h3>
+        <ul>
+            <li>Pole Barns</li>
+            <li>Houses</li>
+            <li>Roofing</li>
+            <li>Remodeling</li>
+            <li>Siding</li>
+            <li>Concrete</li>
+        </ul>    
+    </div>
+    <hr>
+
     <footer>
         Copyright 2024 © Domeneak Addison
     </footer>
