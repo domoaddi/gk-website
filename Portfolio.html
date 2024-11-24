@@ -2,54 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <link rel="stylesheet" href="./styles.css"/>
     <title>G&K Construction's Portfolio</title>
 </head>
 <body>
     <header>
-        <h1 class="title"><a href="./index.html">G&K Construction</a></h1>
-        <h2>General Contracting LLC</h2>
+        <h1 class="title">
+            <a href="./index.html" class="header-link">
+                <img src="./images/G&K-Logo.jpg" alt="G&K Construction Logo" class="logo">
+            </a>
+        </h1>
     </header>
-<h3> Our Portfolio</h3>
-<h3>Choose a photo to view a 3D tour! Updated per availability.</h3>
+    <h3>Our Portfolio</h3>
+    <h3>Click on the "View Photos" button to view more images.</h3>
+    <h3>These listings will be updated per project.</h3>
+   
+    <!-- Portfolio Grid -->
     <div class="portfolio-container">
-        <div class="portfolio-item">
-            <a href="https://www.hommati.com/3DTour-AerialVideo/625-N-Ethlyn-Rd-Gk-Homes-Winfield-Mo-63389--HPI32865132/3d-tour" target="_blank">
-                <img src="./images/house1.jpg" alt="House 1">
-            </a>
+        <div class="portfolio-item" data-house="house1">
+            <img src="./images/house1.jpg" alt="625 N Ethlyn Rd">
+            <button class="view-photos-btn">View Photos</button>
         </div>
-        <div class="portfolio-item">
-            <a href="https://my.matterport.com/show/?m=AbzYZRe9Qp7" target="_blank">
-                <img src="./images/house2.jpg" alt="House 2">
-            </a>
+        <div class="portfolio-item" data-house="house2">
+            <img src="./images/house2.jpg" alt="Aubirn Ridge">
+            <button class="view-photos-btn">View Photos</button>
         </div>
-        <div class="portfolio-item">
-            <a href="https://my.matterport.com/show/?m=oJqkTYXpqgX" target="_blank">
-                <img src="./images/house3.jpg" alt="House 3">
-            </a>
+        <div class="portfolio-item" data-house="house3">
+            <img src="./images/house3.jpg" alt="N Ethlyn">
+            <button class="view-photos-btn">View Photos</button>
         </div>
-        <div class="portfolio-item">
-            <a href="https://my.matterport.com/show/?m=DQEA5qRRt7g&mls=1" target="_blank">
-                <img src="./images/house4.jpg" alt="House 4">
-            </a>
+        <div class="portfolio-item" data-house="house4">
+            <img src="./images/house4.jpg" alt="Brown North Ethlyn">
+            <button class="view-photos-btn">View Photos</button>
         </div>
-        <div class="portfolio-item">
-            <a href="https://my.matterport.com/show/?m=7NLsogYh32i" target="_blank">
-                <img src="./images/house5.jpg" alt="House 5">
-            </a>
+        <div class="portfolio-item" data-house="house5">
+            <img src="./images/house5.jpg" alt="N Ethlyn Rd 3">
+            <button class="view-photos-btn">View Photos</button>
         </div>
-        <div class="portfolio-item">
-            <a href="https://my.matterport.com/show/?m=oNgK8xNbR15" target="_blank">
-                <img src="./images/house6.jpg" alt="House 6">
-            </a>
+        <div class="portfolio-item" data-house="house6">
+            <img src="./images/house6.jpg" alt="House 6">
+            <button class="view-photos-btn">View Photos</button>
         </div>
     </div>
-
+    <!-- Slideshow Modal -->
+    <div class="slideshow-modal" id="slideshowModal" style="display: none;">
+        <span class="close-button">&times;</span>
+        <button class="prev-button">&#10094;</button>
+        <div class="slideshow-content">
+            <img src="" alt="Slideshow Image" id="slideshowImage">
+        </div>
+        <button class="next-button">&#10095;</button>
+        <div class="tour-link">
+            <a href="" target="_blank" id="virtualTourLink">View A Virtual Tour</a>
+        </div>
+    </div>
     <footer>
         Copyright 2024 © Domeneak Addison
     </footer>
-
-    <script src="./script.js"></script>
+    <script src="./portfolio.js"></script>
 </body>
 </html>

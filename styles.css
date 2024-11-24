@@ -1,50 +1,240 @@
 /* Main layout for the portfolio page */
 body {
     background-color: rgb(181, 214, 240);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Rowdies', sans-serif;
+    font-weight: 550;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 60px; /* Add padding at the bottom */
 }
-
+body.modal-open {
+    overflow: hidden;
+}
 header {
     background-color: steelblue;
-    padding: 10px;
+    color: rgb(196, 196, 196);
+    margin: 0;
+    padding: 5px;
     text-align: center;
 }
-
-h2{
+.header-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+}
+.logo {
+    height: 200px;
+    width: auto;
+    margin-right: 15px;
+}
+h2 {
     color: rgb(196, 196, 196);
 }
-
 a {
     text-decoration: none;
     color: blue;
 }
-
 .portfolio-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     justify-items: center;
     margin: 40px;
+    margin-bottom: 60px; /* Add margin at the bottom */
 }
-
 .portfolio-item img {
     width: 100%;
     max-width: 300px;
     height: auto;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
-
 /* Enlarge the image on hover */
 .portfolio-item img:hover {
     transform: scale(1.2);
 }
+/* Slideshow Modal Styles */
+.slideshow-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.slideshow-content {
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.slideshow-content img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.view-photos-btn {
+    background-color: steelblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Rowdies', sans-serif;
+    font-weight: 400;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.view-photos-btn:hover {
+    background-color: #4682B4;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+.prev-button:hover,
+.next-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.tour-link {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+}
+.tour-link a {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: steelblue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+.tour-link a:hover {
+    background-color: #4682B4;
+}
+/* Loading indicator styles */
+.loading-indicator {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    z-index: 10000;
+}
 /* Footer styles */
 footer {
     text-align: right;
     font-size: 6pt;
     font-weight: 550;
     background-color: steelblue;
-    padding: 10pt;
+    padding: 15pt;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px; /* Add a fixed height */
+}
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .logo {
+        width: auto;
+        height: 200px;
+        margin: 10px auto;
+    }
+    .portfolio-container {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 20px;
+        margin-bottom: 60px; /* Add margin at the bottom */
+    }
+    .portfolio-item img:hover {
+        transform: scale(1.1);
+    }
+    .slideshow-content {
+        width: 95%;
+        height: 70vh;
+    }
+    .close-button {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
+    .prev-button,
+    .next-button {
+        padding: 12px;
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .portfolio-container {
+        grid-template-columns: 1fr;
+        margin-bottom: 60px; /* Add margin at the bottom */
+    }
+    .slideshow-content {
+        height: 60vh;
+    }
+    .prev-button {
+        left: 10px;
+    }
+    .next-button {
+        right: 10px;
+    }
+    .tour-link {
+        bottom: 20px;
+    }
+}
+/* Ensure modal is on top */
+.modal-open {
+    overflow: hidden;
+}
+
+.slideshow-modal {
+    overflow: hidden;
 }

@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css"/>
-    <title>G&K Construction</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+        <link rel="stylesheet" href="./style.css?v=1.4"/>
+        <title>G&K Construction</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    </head>
 <body>
     <header>
-        <h1 class="title"><a href="./index.html">G&K Construction</a></h1>
-        <h2>General Contracting LLC</h2>
+        <h1 class="title">
+            <a href="./index.html" class="header-link">
+                <img src="./images/G&K-Logo.jpg" alt="G&K Construction Logo" class="logo">
+            </a>
+        </h1>
         <h2>Phone: (573)-253-0931</h2>
         <h2>Email: gk_construction@ymail.com</h2>
     </header>
@@ -36,48 +39,61 @@
             <p>Founded in 2016 by Gary and Kimberly Zappala. Located in Bowling Green, MO. Primarily servicing St. Louis, Warren, St. Charles, and Lincoln Counties; with projects completed nationwide!</p>
         </div>
         <div class="images-right">
-            <img class="right-img" src="./images/stock1.jpg" alt="Black Man working"/>
-            <img class="right-img" src="./images/stock2.jpg" alt="GnK working on a house"/>
+            <img class="right-img" src="./images/highres625NEthlynRd1.jpg" alt="Black Man working"/>
+            <img class="right-img" src="./images/highres625NEthlynRd2.jpg" alt="GnK working on a house"/>
         </div>
     </div>
     <hr>
 
     <div class="stars">
         <h3>Our Reviews:</h3>
+        <!-- Static Facebook reviews -->
         <img class="reviews" src="./images/review1.JPG" alt="G&K good review"/>
         <img class="reviews" src="./images/review2.JPG" alt="another good G&K review"/>
+        
+        <!-- Dynamic customer reviews -->
+        <div id="reviewsDisplay" class="reviews-display">
+            <!-- Approved reviews will appear here -->
+        </div>
     </div>
+
+    <!-- Review submission form -->
     <div class="review-form-container">
         <h3>Share Your Experience</h3>
+        
+        <!-- Success message -->
+        <div id="successMessage" class="success-message" style="display: none;">
+            Thank you for your review! It will be displayed after approval.
+        </div>
+        
         <form id="reviewForm" class="review-form">
             <div class="form-group">
                 <label for="reviewText">Your Review:</label>
-                <textarea id="reviewText" name="reviewText" rows="4" required placeholder="Tell us about your experience with G&K Construction..."></textarea>
+                <textarea id="reviewText" name="reviewText" rows="4" required 
+                    placeholder="Tell us about your experience with G&K Construction..."
+                    minlength="10" maxlength="500"></textarea>
+                <span class="error-message" id="reviewTextError"></span>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" required placeholder="Your City">
+                    <input type="text" id="city" name="city" required 
+                        placeholder="Your City" pattern="[A-Za-z\s]{2,50}">
+                    <span class="error-message" id="cityError"></span>
                 </div>
                 
                 <div class="form-group">
                     <label for="state">State:</label>
                     <select id="state" name="state" required>
-                        <option value="">Select State</option>
-                        <option value="MO">Missouri</option>
-                        <option value="IL">Illinois</option>
-                        <!-- Add more states as needed -->
+                        <!-- States will be populated by JavaScript -->
                     </select>
+                    <span class="error-message" id="stateError"></span>
                 </div>
             </div>
-    
+
             <button type="submit" class="submit-btn">Submit Review</button>
         </form>
-    
-        <div id="reviewsDisplay" class="reviews-display">
-            <!-- Existing reviews will be displayed here -->
-        </div>
     </div>
 
     <div id="services">
@@ -96,5 +112,6 @@
     <footer>
         Copyright 2024 © Domeneak Addison
     </footer>
+    <script src="./homepage.js"></script>
 </body>
 </html>
