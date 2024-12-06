@@ -1,4 +1,6 @@
-// States array
+console.log('JavaScript file loaded');
+
+// States array for dropdown
 const states = [
     ['AL', 'Alabama'], ['AK', 'Alaska'], ['AZ', 'Arizona'], ['AR', 'Arkansas'],
     ['CA', 'California'], ['CO', 'Colorado'], ['CT', 'Connecticut'], ['DE', 'Delaware'],
@@ -17,21 +19,32 @@ const states = [
 
 // Populate state dropdown when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded');
     const stateSelect = document.getElementById('state');
-    
-    // Add default option
-    const defaultOption = document.createElement('option');
-    defaultOption.value = '';
-    defaultOption.textContent = 'Select State';
-    stateSelect.appendChild(defaultOption);
-    
-    // Add all states
-    states.forEach(([code, name]) => {
-        const option = document.createElement('option');
-        option.value = code;
-        option.textContent = name;
-        stateSelect.appendChild(option);
-    });
+    console.log('State select element:', stateSelect);
+
+    if (stateSelect) { // Add this check
+        console.log('Found state select, populating options');
+        // Clear any existing options
+        stateSelect.innerHTML = '';
+        
+        // Add default option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select State';
+        stateSelect.appendChild(defaultOption);
+        
+        // Add all states
+        states.forEach(([code, name]) => {
+            const option = document.createElement('option');
+            option.value = code;
+            option.textContent = name;
+            stateSelect.appendChild(option);
+        });
+        console.log('Finished populating states');
+    } else {
+        console.log('State select element not found');
+    }
 });
 
 // Review form handling
@@ -90,4 +103,31 @@ document.getElementById('reviewForm').addEventListener('submit', async function(
         console.error('Error:', error);
         alert('Error submitting review. Please try again.');
     }
+
+    // Load approved reviews
+async function loadApprovedReviews() {
+    try {
+        const response = await fetch('load_reviews.php');
+        const reviews = await response.json();
+        
+        const reviewsContainer = document.getElementById('dynamicReviews');
+        reviews.forEach(review => {
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'review-item';
+            reviewElement.innerHTML = `
+                <div class="review-content">
+                    <p>${review.review_text}</p>
+                    <p class="review-location">- ${review.city}, ${review.state}</p>
+                </div>
+                <hr>
+            `;
+            reviewsContainer.appendChild(reviewElement);
+        });
+    } catch (error) {
+        console.error('Error loading reviews:', error);
+    }
+}
+
+// Load reviews when page loads
+document.addEventListener('DOMContentLoaded', loadApprovedReviews);
 });
