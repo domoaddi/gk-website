@@ -1,5 +1,3 @@
-console.log('JavaScript file loaded');
-
 // States array for dropdown
 const states = [
     ['AL', 'Alabama'], ['AK', 'Alaska'], ['AZ', 'Arizona'], ['AR', 'Arkansas'],
@@ -17,117 +15,209 @@ const states = [
     ['WI', 'Wisconsin'], ['WY', 'Wyoming']
 ];
 
-// Populate state dropdown when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded');
-    const stateSelect = document.getElementById('state');
-    console.log('State select element:', stateSelect);
+// Slideshow functionality
+let slideIndex = 0;
+let slides;
+let dots;
+let autoSlideInterval;
 
-    if (stateSelect) { // Add this check
-        console.log('Found state select, populating options');
-        // Clear any existing options
-        stateSelect.innerHTML = '';
+function initializeSlideshow() {
+    slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.querySelector('.slideshow-dots');
+    const prevButton = document.querySelector('.prev-slide');
+    const nextButton = document.querySelector('.next-slide');
+    
+    // Clear existing dots
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
         
-        // Add default option
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select State';
-        stateSelect.appendChild(defaultOption);
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.className = 'dot';
+            dot.onclick = () => showSlide(index);
+            dotsContainer.appendChild(dot);
+        });
         
-        // Add all states
-        states.forEach(([code, name]) => {
-            const option = document.createElement('option');
-            option.value = code;
-            option.textContent = name;
-            stateSelect.appendChild(option);
-        });
-        console.log('Finished populating states');
-    } else {
-        console.log('State select element not found');
+        dots = document.querySelectorAll('.dot');
     }
-});
-
-// Review form handling
-document.getElementById('reviewForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-   
-    // Get form values
-    const reviewText = document.getElementById('reviewText').value;
-    const city = document.getElementById('city').value;
-    const state = document.getElementById('state').value;
-   
-    // Create form data
-    const formData = new FormData();
-    formData.append('reviewText', reviewText);
-    formData.append('city', city);
-    formData.append('state', state);
-   
-    try {
-        // Send data to PHP endpoint
-        const response = await fetch('submit_review.php', {
-            method: 'POST',
-            body: formData
-        });
-       
-        const result = await response.json();
-       
-        if (result.success) {
-            // Create new review element (temporary visual feedback)
-            const reviewElement = document.createElement('div');
-            reviewElement.className = 'review-item';
-            reviewElement.innerHTML = `
-                <div class="review-content">
-                    <p>${reviewText}</p>
-                    <p class="review-location">- ${city}, ${state}</p>
-                </div>
-                <hr>
-            `;
-           
-            // Show success message
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
-            successMessage.textContent = 'Thank you! Your review has been submitted for approval.';
-           
-            // Clear form
-            this.reset();
-           
-            // Hide success message after 3 seconds
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 3000);
-           
-        } else {
-            alert('Error submitting review. Please try again.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error submitting review. Please try again.');
+    
+    // Add button listeners
+    if (prevButton && nextButton) {
+        prevButton.onclick = () => {
+            slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+            showSlide(slideIndex);
+            restartAutoSlide();
+        };
+        
+        nextButton.onclick = () => {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+            restartAutoSlide();
+        };
     }
+    
+    showSlide(0);
+    startAutoSlide();
+}
 
-    // Load approved reviews
+function showSlide(index) {
+    slideIndex = index;
+    const slidesContainer = document.querySelector('.review-slides');
+    slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+    
+    // Update dots
+    if (dots) {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+}
+
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+}
+
+function startAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+}
+
+function restartAutoSlide() {
+    if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+    }
+    startAutoSlide();
+}
+
+// Load approved reviews
 async function loadApprovedReviews() {
     try {
-        const response = await fetch('load_reviews.php');
-        const reviews = await response.json();
+        console.log('Starting to load reviews...');
+        const response = await fetch('./admin/load_reviews.php');
+        const responseText = await response.text();
+        console.log('Server response:', responseText);
         
-        const reviewsContainer = document.getElementById('dynamicReviews');
-        reviews.forEach(review => {
-            const reviewElement = document.createElement('div');
-            reviewElement.className = 'review-item';
-            reviewElement.innerHTML = `
-                <div class="review-content">
-                    <p>${review.review_text}</p>
-                    <p class="review-location">- ${review.city}, ${review.state}</p>
-                </div>
-                <hr>
-            `;
-            reviewsContainer.appendChild(reviewElement);
-        });
+        const reviews = JSON.parse(responseText);
+        console.log('Parsed reviews:', reviews);
+        
+        const reviewsContainer = document.querySelector('.review-slides');
+        if (!reviewsContainer) {
+            console.error('Reviews container not found!');
+            return;
+        }
+        
+        if (Array.isArray(reviews) && reviews.length > 0) {
+            reviews.forEach(review => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide dynamic-review';
+                slideDiv.innerHTML = `
+                    <div class="review-content">
+                        <p>${review.review_text}</p>
+                        <p class="review-location">
+                            ${review.is_anonymous ? 'Anonymous' : (review.reviewer_name || 'Anonymous')}<br>
+                            ${review.city}, ${review.state}
+                        </p>
+                    </div>
+                `;
+                reviewsContainer.appendChild(slideDiv);
+            });
+            
+            if (typeof initializeSlideshow === 'function') {
+                initializeSlideshow();
+            }
+        }
     } catch (error) {
         console.error('Error loading reviews:', error);
     }
 }
 
-// Load reviews when page loads
-document.addEventListener('DOMContentLoaded', loadApprovedReviews);
+// Handle anonymous checkbox
+const anonymousCheckbox = document.getElementById('isAnonymous');
+const nameInput = document.getElementById('reviewerName');
+
+if (anonymousCheckbox && nameInput) {
+    anonymousCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            nameInput.value = '';
+            nameInput.disabled = true;
+            nameInput.style.opacity = '0.5';
+        } else {
+            nameInput.disabled = false;
+            nameInput.style.opacity = '1';
+        }
+    });
+}
+
+
+// Form submission handling 
+document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
+    
+    try {
+        const formData = new FormData(this);
+        formData.append('isAnonymous', document.getElementById('isAnonymous').checked);
+        
+        const response = await fetch('./admin/submit_review.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        console.log('Form submitted, checking response...');
+        const responseText = await response.text();
+        console.log('Raw response:', responseText);
+        
+        let result;
+        try {
+            result = JSON.parse(responseText);
+        } catch (e) {
+            console.error('Failed to parse response:', responseText);
+            throw new Error('Server returned invalid response');
+        }
+        
+        if (result.success) {
+            this.reset();
+            alert('Thank you! Your review has been submitted!');
+        } else {
+            throw new Error(result.error || 'Failed to submit review');
+        }
+    } catch (error) {
+        console.error('Submission error:', error);
+        alert('Error submitting review. Please try again.');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Review';
+    }
+});
+
+// Initialize state dropdown
+function initializeStateDropdown() {
+    const stateSelect = document.getElementById('state');
+    if (!stateSelect) return;
+    
+    stateSelect.innerHTML = '';
+    
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Select State';
+    stateSelect.appendChild(defaultOption);
+    
+    states.forEach(([code, name]) => {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = name;
+        stateSelect.appendChild(option);
+    });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeStateDropdown();
+    initializeSlideshow();
+    loadApprovedReviews();
 });

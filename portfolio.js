@@ -93,10 +93,29 @@ const houseImages = {
     house6: {
         images: [
             './images/house6.jpg',
-            './images/house6/1.jpg',
-            './images/house6/2.jpg',
-            './images/house6/3.jpg',
-            './images/house6/4.jpg'
+            './images/house6/house6-1.jpg',
+            './images/house6/house6-2.jpg',
+            './images/house6/house6-3.jpg',
+            './images/house6/house6-4.jpg',
+            './images/house6/house6-5.jpg',
+            './images/house6/house6-6.jpg',
+            './images/house6/house6-7.jpg',
+            './images/house6/house6-8.jpg',
+            './images/house6/house6-9.jpg',
+            './images/house6/house6-10.jpg',
+            './images/house6/house6-11.jpg',
+            './images/house6/house6-12.jpg',
+            './images/house6/house6-13.jpg',
+            './images/house6/house6-14.jpg',
+            './images/house6/house6-15.jpg',
+            './images/house6/house6-16.jpg',
+            './images/house6/house6-17.jpg',
+            './images/house6/house6-18.jpg',
+            './images/house6/house6-19.jpg',
+            './images/house6/house6-20.jpg',
+            './images/house6/house6-21.jpg',
+            './images/house6/house6-22.jpg',
+            './images/house6/house6-23.jpg',
         ],
         tourLink: 'https://my.matterport.com/show/?m=oNgK8xNbR15'
     }

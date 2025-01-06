@@ -1,7 +1,6 @@
 <?php
-// Enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+error_reporting(0); // Disable error reporting for production
+ini_set('display_errors', 0);
 
 // Database configuration
 $host = 'localhost';
@@ -12,15 +11,9 @@ $password = 'VAO44!mi'; // The password you created for the database
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "<pre>Database connection successful!</pre>";
-    
-    // Test query to verify table exists
-    $stmt = $pdo->query("SHOW TABLES");
-    $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
-    echo "<pre>Available tables:\n";
-    print_r($tables);
-    echo "</pre>";
 } catch(PDOException $e) {
-    echo "<pre>Connection failed: " . $e->getMessage() . "</pre>";
+    // Log error but don't output anything
+    error_log("Database connection failed: " . $e->getMessage());
+    exit;
 }
 ?>

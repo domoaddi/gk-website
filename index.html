@@ -49,27 +49,40 @@
 
     <div class="stars">
         <h3>Our Reviews:</h3>
-        <!-- Static Facebook reviews -->
-        <img class="reviews" src="./images/review1.jpg" alt="G&K good review"/>
-        <img class="reviews" src="./images/review2.jpg" alt="another good G&K review"/>
-        
-        <!-- Dynamic customer reviews -->
-        <div id="dynamicReviews">
-            <!-- Approved reviews will be loaded here -->
+        <!-- Static and Dynamic Reviews Container -->
+        <div class="review-slideshow">
+            <div class="review-slides">
+                <!-- Static Facebook reviews -->
+                <div class="slide fb-review">
+                    <img src="./images/review1.jpg" alt="G&K good review" class="reviews"/>
+                </div>
+                <div class="slide fb-review">
+                    <img src="./images/review2.jpg" alt="another good G&K review" class="reviews"/>
+                </div>
+                <!-- Dynamic reviews will be added here -->
+            </div>
+            <div class="slideshow-dots"></div>
+            <button class="slide-nav prev-slide">&#10094;</button>
+            <button class="slide-nav next-slide">&#10095;</button>
         </div>
     </div>
-
-    <!-- Review submission form -->
+    
+    <!-- Review Form -->
     <div class="review-form-container">
-        <h3>Share Your Experience</h3>
-        
-        <!-- Success message -->
-        <div id="successMessage" class="success-message" style="display: none;">
-            Thank you for your review! It will be displayed after approval.
-        </div>
+        <h3>Leave us a review!</h3>
+        <div id="successMessage" class="success-message" style="display: none;"></div>
         
         <form id="reviewForm" class="review-form">
             <div class="form-group">
+                <div class="form-group name-group">
+                    <label for="reviewerName">Your Name:</label>
+                    <input type="text" id="reviewerName" name="reviewerName" 
+                        placeholder="Enter your name (Optional)">
+                    <div class="anonymous-option">
+                        <input type="checkbox" id="isAnonymous" name="isAnonymous">
+                        <label for="isAnonymous">Check to Submit Anonymously</label>
+                    </div>
+                </div>
                 <label for="reviewText">Your Review:</label>
                 <textarea id="reviewText" name="reviewText" rows="4" required 
                     placeholder="Tell us about your experience with G&K Construction..."
@@ -93,7 +106,7 @@
                     <span class="error-message" id="stateError"></span>
                 </div>
             </div>
-
+    
             <button type="submit" class="submit-btn">Submit Review</button>
         </form>
     </div>

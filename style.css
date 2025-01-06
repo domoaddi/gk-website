@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
     background-color: rgb(181, 214, 240);
     font-family: 'Rowdies', sans-serif;
@@ -6,15 +7,15 @@ body {
     padding: 0;
 }
 
+/* Header Styles */
 header {
     background-color: steelblue;
     color: rgb(196, 196, 196);
-    margin: 0px;
+    margin: 0;
     padding: 5px;
     text-align: center;
 }
 
-/* Header link styling */
 .header-link {
     display: flex;
     align-items: center;
@@ -23,21 +24,13 @@ header {
     color: inherit;
 }
 
-/* Logo image styling */
 .logo {
     height: 200px;
     width: auto;
     margin-right: 15px;
 }
 
-a {
-    text-decoration: none;
-}
-
-li {
-    margin-right: 5%;
-}
-
+/* Navigation Styles */
 nav {
     background-color: steelblue;
     color: rgb(196, 196, 196);
@@ -52,9 +45,14 @@ nav ul {
 
 nav li {
     display: inline-block;
+    margin-right: 5%;
 }
 
-/* Main content layout */
+a {
+    text-decoration: none;
+}
+
+/* Main Content Grid Layout */
 .main-content {
     display: grid;
     grid-template-columns: 300px 1fr 475px;
@@ -62,7 +60,6 @@ nav li {
     margin: 20px;
 }
 
-/* Vision/Mission section */
 .text-left {
     grid-column: 1 / 2;
     background-color: rgba(255, 255, 255, 0.1);
@@ -71,7 +68,6 @@ nav li {
     margin-left: 0;
 }
 
-/* About section */
 .about-section {
     grid-column: 2 / 3;
     text-align: left;
@@ -84,7 +80,6 @@ nav li {
     max-width: 600px;
 }
 
-/* Images container */
 .images-right {
     grid-column: 3 / 4;
     display: flex;
@@ -99,19 +94,18 @@ nav li {
     border-radius: 8px;
 }
 
-/* Headings */
+/* Heading Styles */
 h3, h4, h5 {
     margin-top: 0;
     font-weight: bold;
 }
 
-/* Underline Vision and Mission headers */
 .text-left h4, .text-left h5 {
     text-decoration: underline;
     margin-bottom: 15px;
 }
 
-/* Service list styling */
+/* Services Section */
 #services {
     text-align: center;
     margin: 40px auto;
@@ -125,7 +119,6 @@ h3, h4, h5 {
 #services h3 {
     margin-bottom: 30px;
     font-size: 24px;
-    color: white;
 }
 
 #services ul {
@@ -154,7 +147,98 @@ h3, h4, h5 {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Review form styles */
+/* Review System Styles */
+.stars {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Static Review Images Slideshow */
+.review-slideshow {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    overflow: hidden;
+}
+
+.review-slides {
+    display: flex;
+    transition: transform 0.7s ease;
+}
+
+.slide {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.fb-review img {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+}
+
+/* Dynamic Reviews Display */
+.dynamic-reviews {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.review-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-content {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.review-location {
+    font-style: italic;
+    color: #666;
+    text-align: right;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Review Form Styles */
+
+.name-group {
+    margin-bottom: 20px;
+}
+
+.review-form-container h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);  
+}
+
+.anonymous-option {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.anonymous-option input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+#reviewerName:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
 .review-form-container {
     margin: 40px auto;
     max-width: 800px;
@@ -165,7 +249,6 @@ h3, h4, h5 {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 8px;
-    margin-bottom: 40px;
 }
 
 .form-group {
@@ -183,51 +266,29 @@ h3, h4, h5 {
     flex: 1;
 }
 
-.error-message {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: 5px;
-    display: block;
-}
-
-.success-message {
-    background-color: #dff0d8;
-    color: #3c763d;
-    padding: 15px;
-    margin-bottom: 20px;
+/* Form Input Styles */
+textarea, input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Review display styles */
-.reviews-display {
-    margin-top: 20px;
-}
-
-.review-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.review-content {
-    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-family: inherit;
     font-size: 16px;
-    line-height: 1.6;
 }
 
-.review-location {
-    font-style: italic;
-    color: #666;
-    text-align: right;
-    font-size: 14px;
-    margin-top: 10px;
+textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
-/* Submit button styles */
+textarea:focus, input:focus, select:focus {
+    outline: none;
+    border-color: steelblue;
+    box-shadow: 0 0 5px rgba(70, 130, 180, 0.3);
+}
+
+/* Submit Button */
 .submit-btn {
     background-color: steelblue;
     color: white;
@@ -250,53 +311,22 @@ h3, h4, h5 {
     cursor: not-allowed;
 }
 
-/* Form input styles */
-textarea, input, select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
+/* Messages */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.success-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    margin-bottom: 20px;
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.8);
-    font-family: inherit;
-    font-size: 16px;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-textarea:focus, input:focus, select:focus {
-    outline: none;
-    border-color: steelblue;
-    box-shadow: 0 0 5px rgba(70, 130, 180, 0.3);
-}
-
-/* Select styling */
-.state-select {
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.state-select option {
-    padding: 8px 12px;
-}
-
-.state-select::-webkit-scrollbar {
-    width: 10px;
-}
-
-.state-select::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.state-select::-webkit-scrollbar-thumb {
-    background: steelblue;
-    border-radius: 5px;
-}
-
-.state-select::-webkit-scrollbar-thumb:hover {
-    background: #4682B4;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Footer */
@@ -308,47 +338,23 @@ footer {
     padding: 20pt;
 }
 
-/* Mobile Styles */
+/* Media Queries */
 @media screen and (max-width: 768px) {
+    /* Mobile Layout */
     body {
         overflow-x: hidden;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    header {
-        width: 100%;
-        padding: 15px 0;
-        margin: 0;
-    }
-
-    .logo {
-        width: auto;
-        height: 200px;
-        margin: 10px auto;
-    }
-
-    nav {
-        width: 100%;
-        padding: 10px 0;
-        margin: 0;
     }
 
     .main-content {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        margin: 0;
         padding: 10px;
-        box-sizing: border-box;
     }
 
     .text-left, .about-section {
         width: 100%;
         margin: 10px 0;
         padding: 15px;
-        box-sizing: border-box;
         text-align: center;
     }
 
@@ -356,31 +362,12 @@ footer {
         display: none !important;
     }
 
-    .stars {
-        width: 100%;
-        padding: 15px;
-        box-sizing: border-box;
-        text-align: center;
-    }
-
-    .reviews {
-        width: 100%;
-        max-width: none;
-        margin: 10px 0;
-    }
-
-    .review-form-container {
-        width: 100%;
-        padding: 15px;
-        margin: 10px 0;
-        box-sizing: border-box;
-    }
-
+    /* Mobile Form Styles */
     .form-row {
         flex-direction: column;
     }
 
-    /* Updated services mobile styles */
+    /* Mobile Services */
     #services ul {
         gap: 15px;
     }
@@ -391,22 +378,17 @@ footer {
         padding: 12px 20px;
     }
 
-    hr {
-        width: 100%;
-        margin: 15px 0;
+    /* Mobile Reviews */
+    .review-slideshow {
+        max-width: 100%;
+        padding: 0 10px;
     }
-}
 
-/* iPhone-specific adjustments */
-@media screen and (max-width: 480px) {
-    .main-content {
+    .slide {
         padding: 10px;
     }
 
-    .text-left, .about-section {
-        padding: 10px;
-    }
-
+    /* Mobile Header */
     header h1 {
         font-size: 20px;
     }
@@ -414,9 +396,15 @@ footer {
     header h2 {
         font-size: 16px;
     }
+}
 
-    /* Updated services iPhone styles */
+/* iPhone Specific */
+@media screen and (max-width: 480px) {
     #services li {
         flex: 0 1 100%;
+    }
+
+    .review-form-container {
+        padding: 10px;
     }
 }
